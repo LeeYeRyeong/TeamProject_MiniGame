@@ -4,6 +4,7 @@
 using namespace std;
 
 void upgrade369();
+void baseballGame();
 bool isRepeat(int, int, int);
 
 int main()
@@ -58,6 +59,13 @@ void upgrade369()
 			num++;
 		}
 	}
+}
+
+void baseballGame()
+{
+	int number;
+	cout << "Enter a number : ";
+	cin >> number;
 }
 
 bool isRepeat(int num1, int num2, int num3) 
