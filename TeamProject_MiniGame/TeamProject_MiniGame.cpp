@@ -5,7 +5,7 @@ using namespace std;
 
 void upgrade369();
 void baseballGame();
-bool isRepeat(int, int, int);
+bool isRepeat369(int, int, int);
 
 int main()
 {
@@ -68,7 +68,7 @@ void baseballGame()
 	cin >> number;
 }
 
-bool isRepeat(int num1, int num2, int num3) 
+bool isRepeat369(int num1, int num2, int num3) 
 {
 	return true;
 }
