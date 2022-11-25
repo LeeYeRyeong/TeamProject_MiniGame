@@ -1,14 +1,17 @@
 ﻿#include <iostream>
 #include <ctime>
 #include <cstdlib>
+#include <windows.h>
 using namespace std;
 
 void upgrade369();
 void baseballGame();
-bool isRepeat369(int, int, int);
+bool isRepeat369(const int&);
+int createNum();
 
 int main()
 {
+	srand(time(0));
 	int select;
 	do {
 		cout << "        CHOOSE THE GAME" << endl << "------------------------------------" << endl;
@@ -24,12 +27,15 @@ int main()
 
 void upgrade369()
 {
-	int n1, n2, n3, num = 1, endNum, userNum;
+	int n[3] = {};
+	int num = 1, endNum, userNum, i = 0;
 	bool select;
-	srand(time(0));
-	n1 = rand() % 9 + 1;
-	n2 = rand() % 9 + 1;
-	n3 = rand() % 9 + 1;
+
+	while (i < 3) {
+		n[i] = createNum();
+		if (isRepeat369(n[i])) continue;
+		i++;
+	}
 
 	cout << "Enter a end number : ";
 	cin >> endNum;
@@ -68,7 +74,16 @@ void baseballGame()
 	cin >> number;
 }
 
-bool isRepeat369(int num1, int num2, int num3) 
+int createNum()
 {
-	return true;
+	return rand() % 10;
+}
+
+bool isRepeat369(const int &num1) 
+{
+	static int list[10] = {};
+	list[num1]++;
+	if (list[num1] > 1) return true;
+
+	return false;
 }
