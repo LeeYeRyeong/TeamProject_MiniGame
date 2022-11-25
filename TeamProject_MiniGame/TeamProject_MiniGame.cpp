@@ -7,7 +7,7 @@ using namespace std;
 void upgrade369();
 void baseballGame();
 bool isRepeat369(const int&);
-int createNum();
+int createNum(int);
 
 int main()
 {
@@ -32,7 +32,7 @@ void upgrade369()
 	bool select;
 
 	while (i < 3) {
-		n[i] = createNum();
+		n[i] = createNum(10);
 		if (isRepeat369(n[i])) continue;
 		i++;
 	}
@@ -74,9 +74,9 @@ void baseballGame()
 	cin >> number;
 }
 
-int createNum()
+int createNum(int n)
 {
-	return rand() % 10;
+	return rand() % n;
 }
 
 bool isRepeat369(const int &num1) 
