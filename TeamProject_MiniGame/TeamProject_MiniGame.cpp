@@ -8,6 +8,7 @@ void upgrade369();
 void baseballGame();
 bool isRepeat369(const int&);
 int createNum(int);
+int numCount(int);
 
 int main()
 {
@@ -21,10 +22,13 @@ int main()
 		cout << "Enter a number : ";
 		cin >> select;
 		if (select == 1) upgrade369();
+		else if (select == 2) baseballGame();
 
 	} while (select == 0); 
 }
 
+// 369게임 기호 어떤걸할지.... 함수를 새로 만들지 관련해서
+// 이부분 구현 끝나면 끝
 void upgrade369()
 {
 	int n[3] = {};
@@ -45,7 +49,7 @@ void upgrade369()
 
 	if (select) {
 		while (num <= endNum) {
-			cout << num++ << " ";
+			cout << num++ << endl;
 			cin >> userNum;
 			if (userNum != num) {
 				cout << "Game Over!" << endl;
@@ -67,16 +71,39 @@ void upgrade369()
 	}
 }
 
+// 메세지 올바르게 고치기
 void baseballGame()
 {
-	int number;
-	cout << "Enter a number : ";
-	cin >> number;
+	int number = createNum(1000);
+	int guessNum;
+	cout << "secret number count is " << numCount(number) << endl;
+
+	while (true) {
+		cout << "Enter the guess number : ";
+		cin >> guessNum;
+		if (guessNum == number) {
+			cout << "You Win!" << endl;
+			break;
+		}
+		else {
+			continue;
+		}
+	}
 }
 
 int createNum(int n)
 {
 	return rand() % n;
+}
+
+int numCount(int number)
+{
+	int count = 0;
+	while (number > 0) {
+		number /= 10;
+		count++;
+	}
+	return count;
 }
 
 bool isRepeat369(const int &num1) 
