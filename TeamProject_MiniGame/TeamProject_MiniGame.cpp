@@ -1,14 +1,18 @@
 ﻿#include <iostream>
 #include <ctime>
 #include <cstdlib>
+#include <string>
 #include <windows.h>
 using namespace std;
 
 void upgrade369();
 void baseballGame();
+void upgradeBR31();
 bool isRepeat369(const int&);
 int createNum(int);
 int numCount(int);
+int strike(int, int, int);
+int ball(int, int, int);
 
 int main()
 {
@@ -23,6 +27,9 @@ int main()
 		cin >> select;
 		if (select == 1) upgrade369();
 		else if (select == 2) baseballGame();
+		else if (select == 3) upgradeBR31();
+		else if (select == 4) subway();
+		else continue;
 
 	} while (select == 0); 
 }
@@ -71,7 +78,7 @@ void upgrade369()
 	}
 }
 
-// 메세지 올바르게 고치기
+// 메세지 부분만 수정하면 됨.
 void baseballGame()
 {
 	int number = createNum(1000);
@@ -86,9 +93,26 @@ void baseballGame()
 			break;
 		}
 		else {
+			int strikeCount = strike(number, guessNum, numCount(number));
+			int ballCount = ball(number, guessNum, numCount(number));
+			cout << strikeCount << " strke" << " " << ballCount - strikeCount << " ball" << " "
+				<< (numCount(number) - strikeCount - ballCount > 0 ? numCount(number) - strikeCount - ballCount : 0) << " out" << endl;
 			continue;
 		}
 	}
+}
+
+void upgradeBR31()
+{
+	int number = createNum(50 - 31) + 32;
+	cout << "the end number is " << number << endl;
+
+	// 알고리즘을 사용자도 이길 수 있게 구성할지 or 사용자가 절대 이길 수 없게 구성할지
+}
+
+void subway()
+{
+	string station[10][1000] = {}; // 역 이름 추가하기
 }
 
 int createNum(int n)
@@ -113,4 +137,43 @@ bool isRepeat369(const int &num1)
 	if (list[num1] > 1) return true;
 
 	return false;
+}
+
+int strike(int number, int guessNum, int n)
+{
+	int strike = 0;
+	int NUM[5] = {}, GUESS[5] = {};
+
+	for (int i = 0; i < n; i++) {
+		NUM[n - i - 1] = number % 10;
+		GUESS[n - i - 1] = guessNum % 10;
+		number /= 10;
+		guessNum /= 10;
+	}
+
+	for (int i = 0; i < n; i++) 
+		for (int j = 0; j < n; j++) 
+			if (NUM[i] == GUESS[j] && i == j)
+				strike++;
+
+	return strike;
+}
+
+int ball(int number, int guessNum, int n)
+{
+	int ball = 0;
+	int NUM[5] = {}, GUESS[5] = {};
+
+	for (int i = 0; i < n; i++) {
+		NUM[n - i - 1] = number % 10;
+		GUESS[n - i - 1] = guessNum % 10;
+		number /= 10;
+		guessNum /= 10;
+	}
+
+	for (int i = 0; i < n; i++)
+		for (int j = 0; j < n; j++)
+			if (NUM[i] == GUESS[j]) ball++;
+
+	return ball;
 }
