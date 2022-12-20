@@ -96,7 +96,7 @@ void baseballGame()
 		else {
 			int strikeCount = strike(number, guessNum, numCount(number));
 			int ballCount = ball(number, guessNum, numCount(number));
-			cout << strikeCount << " strike" << " " << ballCount - strikeCount << " ball" << " "
+			cout << strikeCount << " strike" << " " << ballCount << " ball" << " "
 				<< (numCount(number) - strikeCount - ballCount > 0 ? numCount(number) - strikeCount - ballCount : 0) << " out" << endl;
 			continue;
 		}
@@ -174,7 +174,7 @@ int ball(int number, int guessNum, int n)
 
 	for (int i = 0; i < n; i++)
 		for (int j = 0; j < n; j++)
-			if (NUM[i] == GUESS[j]) ball++;
+			if (NUM[i] == GUESS[j] && i != j) ball++;
 
 	return ball;
 }
