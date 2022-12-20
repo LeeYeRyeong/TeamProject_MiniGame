@@ -8,6 +8,7 @@ using namespace std;
 void upgrade369();
 void baseballGame();
 void upgradeBR31();
+void subway();
 bool isRepeat369(const int&);
 int createNum(int);
 int numCount(int);
@@ -83,19 +84,19 @@ void baseballGame()
 {
 	int number = createNum(1000);
 	int guessNum;
-	cout << "secret number count is " << numCount(number) << endl;
+	cout << "The number of digits of secret numbers is " << numCount(number) << endl;
 
 	while (true) {
 		cout << "Enter the guess number : ";
 		cin >> guessNum;
 		if (guessNum == number) {
-			cout << "You Win!" << endl;
+			cout << "Correct! You found the exact one!" << endl << "The answer is " << number << endl;
 			break;
 		}
 		else {
 			int strikeCount = strike(number, guessNum, numCount(number));
 			int ballCount = ball(number, guessNum, numCount(number));
-			cout << strikeCount << " strke" << " " << ballCount - strikeCount << " ball" << " "
+			cout << strikeCount << " strike" << " " << ballCount - strikeCount << " ball" << " "
 				<< (numCount(number) - strikeCount - ballCount > 0 ? numCount(number) - strikeCount - ballCount : 0) << " out" << endl;
 			continue;
 		}
@@ -115,7 +116,7 @@ void subway()
 	string station[10][1000] = {}; // 역 이름 추가하기
 }
 
-int createNum(int n)
+inline int createNum(int n)
 {
 	return rand() % n;
 }
