@@ -82,18 +82,16 @@ void upgrade369()
 // 메세지 부분만 수정하면 됨.
 void baseballGame()
 {
-	int count = createNum(5) + 2;
+	int count = createNum(5) + 1;
 	int number = 0, i = 0, guessNum;
 	int temp[10];
 
 	while (i < count) {
 		temp[i] = createNum(10);
-		if (isRepeat369(temp[i])) continue;
+		if (isRepeat369(temp[i]) || (i == 0 && temp[i] == 0)) continue;
 		number = number * 10 + createNum(10);
 		i++;
 	}
-
-	cout << number << endl;
 
 	cout << "The number of digits of secret numbers is " << count << endl;
 
