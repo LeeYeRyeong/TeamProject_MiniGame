@@ -35,13 +35,11 @@ int main()
 	} while (select == 0); 
 }
 
-// 369게임 기호 어떤걸할지.... 함수를 새로 만들지 관련해서
-// 이부분 구현 끝나면 끝
 void upgrade369()
 {
 	int n[3] = {};
 	int num = 1, userNum, endNum, i = 0;
-	bool select;
+	bool select, star = false, userInput = false;
 	char user;
 
 	while (i < 3) {
@@ -59,14 +57,27 @@ void upgrade369()
 
 	if (select) {
 		while (num <= endNum) {
-			if (num == n[0] || num == n[1] || num == n[2]) {
-				cout << "*" << endl;
+			int temp = num;
+			while (temp > 0) {
+				if (temp % 10 == n[0] || temp % 10 == n[1] || temp % 10 == n[2]) {
+					cout << "*";
+					star = true;
+				}
+				temp /= 10;
+			}
+			if (!star) cout << num++ << endl;
+			else {
+				cout << endl;
 				num++;
 			}
-			else {
-				cout << num++ << endl;
+
+			temp = num;
+			while (temp > 0) {
+				if (temp % 10 == n[0] || temp % 10 == n[1] || temp % 10 == n[2]) userInput = true;
+				temp /= 10;
 			}
-			if (num == n[0] || num == n[1] || num == n[2]) {
+
+			if (userInput) {
 				cin >> user;
 				if (user != '*') {
 					cout << "Game Over!" << endl;
@@ -81,17 +92,50 @@ void upgrade369()
 				}
 			}
 			num++;
+			star = false;
+			userInput = false;
 		}
 	}
 	else {
 		while (num <= endNum) {
-			cin >> userNum;
-			if (userNum != num) {
-				cout << "Game Over!" << endl;
-				break;
+			int temp = num;
+			while (temp > 0) {
+				if (temp % 10 == n[0] || temp % 10 == n[1] || temp % 10 == n[2]) userInput = true;
+				temp /= 10;
 			}
-			cout << ++num << " ";
+
+			if (userInput) {
+				cin >> user;
+				if (user != '*') {
+					cout << "Game Over!" << endl;
+					break;
+				}
+			}
+			else {
+				cin >> userNum;
+				if (userNum != num) {
+					cout << "Game Over!" << endl;
+					break;
+				}
+			}
+
 			num++;
+			temp = num;
+			while (temp > 0) {
+				if (temp % 10 == n[0] || temp % 10 == n[1] || temp % 10 == n[2]) {
+					cout << "*";
+					star = true;
+				}
+				temp /= 10;
+			}
+			if (!star) cout << num++ << endl;
+			else {
+				cout << endl;
+				num++;
+			}
+
+			star = false;
+			userInput = false;
 		}
 	}
 }
@@ -182,8 +226,6 @@ void subway()
 	{"신논현","노량진","여의도","가양","당산","염창","봉은사","고속터미널","국회의사당","마곡나루","등촌","김포공항","언주",
 		"양천향교","선정릉","중앙보훈병원","흑석","석촌","선유도","증미","신방화","삼전","삼성중앙","올림픽공원","석촌고분",
 		"샛강","송파나루","노들","종합운동장","신목동","사평","신반포","공항시장","구반포","한성백제","개화","동작","둔춘오륜"} }; // 역 이름 추가하기
-
-
 
 }
 
