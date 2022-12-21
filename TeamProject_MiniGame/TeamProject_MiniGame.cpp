@@ -40,8 +40,9 @@ int main()
 void upgrade369()
 {
 	int n[3] = {};
-	int num = 1, endNum, userNum, i = 0;
+	int num = 1, userNum, endNum, i = 0;
 	bool select;
+	char user;
 
 	while (i < 3) {
 		n[i] = createNum(10);
@@ -51,17 +52,33 @@ void upgrade369()
 
 	cout << "Enter a end number : ";
 	cin >> endNum;
+	cout << "The key number is " << n[0] << ", " << n[1] << ", " << n[2] << endl;
 	cout << "If you choose 0, you starts first, and if you choose 1, the computer starts first, " 
 		<< endl << "Choose the number : ";
 	cin >> select;
 
 	if (select) {
 		while (num <= endNum) {
-			cout << num++ << endl;
-			cin >> userNum;
-			if (userNum != num) {
-				cout << "Game Over!" << endl;
-				break;
+			if (num == n[0] || num == n[1] || num == n[2]) {
+				cout << "*" << endl;
+				num++;
+			}
+			else {
+				cout << num++ << endl;
+			}
+			if (num == n[0] || num == n[1] || num == n[2]) {
+				cin >> user;
+				if (user != '*') {
+					cout << "Game Over!" << endl;
+					break;
+				}
+			}
+			else {
+				cin >> userNum;
+				if (userNum != num) {
+					cout << "Game Over!" << endl;
+					break;
+				}
 			}
 			num++;
 		}
@@ -122,6 +139,7 @@ void upgradeBR31()
 
 void subway()
 {
+	int select;
 	string station[10][1000] = { 
 		{ "서울역","영등포","용산","부천","종각","수원","역곡","송내","부평","금정"
    "가산디지털단지","종로3가","회기","안양","종로5가","개봉","청량리","시청","주안","의정부"
